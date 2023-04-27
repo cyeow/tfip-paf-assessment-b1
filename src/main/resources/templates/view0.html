@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Funds Transfer</h1>
+    <form method="post" data-th-action="@{/transfer}" data-th-object="${transfer}">
+        <table>
+            <tr>
+                <td>From account:</td>
+                <td><select name="from.accountId" data-th-field="${transfer.from.accountId}" >
+                    <option data-th-each="acc : ${accounts}" data-th-value="${acc.accountId}" data-th-text="@{${acc.name} + ' (' + ${acc.accountId} + ')'}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>To account:</td>
+                <td><select name="to.accountId" data-th-field="${transfer.to.accountId}">
+                    <option data-th-each="acc : ${accounts}" data-th-value="${acc.accountId}" data-th-text="@{${acc.name} + ' (' + ${acc.accountId} + ')'}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Amount:</td>
+                <td><input type="number" step="0.01" data-th-field="${transfer.amount}"/></td>
+            </tr>
+            <tr>
+                <td>Comments:</td>
+                <td><textarea name="comments" rows="10", cols="30" placeholder="Type here" data-th-field="${transfer.comments}"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Transfer</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <ul data-th-if="${#fields.hasAnyErrors()}">
+                        <li data-th-each="err : ${#fields.allErrors()}" data-th-text="${err}">
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

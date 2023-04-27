@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body data-th-object="${transfer}">
+    <h2>Your transfer of $<span data-th-text="*{amount}"></span> from <span
+            data-th-text="@{*{from.name} + ' (' + *{from.accountId} + ')'}"></span> to <span
+            data-th-text="@{*{to.name} + ' (' + *{to.accountId} + ')'}"></span> is successful.</h2>
+    <h2>Transaction id is <span data-th-text="*{txId}"></span></h2>
+</body>
+
+</html>
